@@ -9,24 +9,24 @@ const movieSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-        genres: {
+    genres: {
             type: String,
             enum : ["Action","Comedy","Drama","Fantacy","Horror","Romance","SciFi"],
             required: true
         },
-        releaseDate: {
+    releaseDate: {
             type: Date,
-            required: true
+            default: Date.now()
         },
-        director: {
+    director: {
             type: String,
             required: true
         },
-        actors: {
+    actors: {
             type:String,
             required: true
         },
-        userId:{
+    userId:{
             type: mongoose.Schema.Types.ObjectId,
             required: true,
             ref: "User"
