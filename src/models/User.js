@@ -12,9 +12,23 @@ const preferenceSchema = new mongoose.Schema({
         "Fantacy",
         "Horror",
         "Romance",
-        "SciFi",]
+        "SciFi"],
+        default : "Action"
     },
-    default : "Action"
+    dislikedGenres : {
+        type: String,
+        required: true,
+        enum : [        
+        "Action",
+        "Comedy",
+        "Drama",
+        "Fantacy",
+        "Horror",
+        "Romance",
+        "SciFi"],
+        default : "Action"
+    },
+    
 },);
 
 const watchHistorySchema = new mongoose.Schema({
@@ -35,7 +49,32 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     preferences : {
-        type : preferenceSchema,
+        favoriteGenres: {
+            type: String,
+            enum:[        
+                "Action",
+                "Comedy",
+                "Drama",
+                "Fantacy",
+                "Horror",
+                "Romance",
+                "SciFi"
+            ],
+            default: "Action"
+        },
+        dislikedGenres : {
+            type: String,
+            enum:[        
+                "Action",
+                "Comedy",
+                "Drama",
+                "Fantacy",
+                "Horror",
+                "Romance",
+                "SciFi"
+            ],
+            default: "Action" 
+        }
     },
     watchHistory : {
         type : watchHistorySchema
