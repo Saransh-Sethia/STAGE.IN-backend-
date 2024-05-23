@@ -12,12 +12,13 @@ const episodesSchema = new mongoose.Schema(
     },
     releaseDate: {
       type: Date,
+      default: Date.now()
     },
     director: {
       type: String,
     },
     actors: {
-      type: String,
+      type: [String],
       required: true,
     },
   },
@@ -37,7 +38,7 @@ const tvShowSchema = new mongoose.Schema(
       required: true,
     },
     genres: {
-      type: String,
+      type: [String],
       enum: [
         "Action",
         "Comedy",

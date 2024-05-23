@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 const userRoutes = require("./src/routes/userRoutes")
 const movieRoutes = require("./src/routes/movieRoutes");
-
+const tvRoutes = require("./src/routes/tvRoutes");
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/user", userRoutes);
 app.use("/api/movies", movieRoutes);
+app.use("/api/tv", tvRoutes);
 
 //Connect to MongoDB
 mongoose
