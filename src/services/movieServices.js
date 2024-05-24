@@ -18,6 +18,24 @@ const getAllMovies = async (userId) => {
   }
 };
 
+const limitMovies = async (page, limit) => {
+  try {
+    const totalPosts = Movie.countDocuments();
+    const totalPages = Math.ceil(totalPosts / limit);
+
+    if (page > totalPages){
+      throw new Error("Page Not Found!")
+    }
+    let skip = (page - 1) * limit;
+
+    const movies = await Movie.find().skip(skip).limit(limit).exec();
+
+    return movies;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const deleteMovie = async (movieId, userId) => {
   try {
     const movie = await Movie.findOneAndDelete({
@@ -30,4 +48,4 @@ const deleteMovie = async (movieId, userId) => {
   }
 };
 
-module.exports = { createMovie, getAllMovies, deleteMovie };
+module.exports = { createMovie, getAllMovies, deleteMovie, limitMovies };

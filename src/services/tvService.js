@@ -18,6 +18,24 @@ const getAllTVShows = async (userId) => {
   }
 };
 
+const limitTVShows = async (page, limit) => {
+  try {
+    const totalPosts = TVShow.countDocuments();
+    const totalPages = Math.ceil(totalPosts / limit);
+
+    if (page > totalPages){
+      throw new Error("Page Not Found!")
+    }
+    let skip = (page - 1) * limit;
+
+    const shows = await TVShow.find().skip(skip).limit(limit).exec();
+
+    return shows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 const deleteTVShow = async (showId, userId) => {
   try {
     const tvShow = await TVShow.findOneAndDelete({
@@ -30,4 +48,4 @@ const deleteTVShow = async (showId, userId) => {
   }
 };
 
-module.exports = { createTVShow, getAllTVShows, deleteTVShow };
+module.exports = { createTVShow, getAllTVShows, limitTVShows, deleteTVShow };

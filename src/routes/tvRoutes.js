@@ -7,6 +7,8 @@ router.post("/", authenticateToken, tvController.createTVShow);
 
 router.get("/", authenticateToken, tvController.getAllTVShows);
 
+router.get("/paginate", authenticateToken, tvController.limitTVShows);
+
 router.delete("/:id", authenticateToken, tvController.deleteTVShow);
 
 module.exports = router
